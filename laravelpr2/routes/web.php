@@ -3,8 +3,8 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('posts', PostController::class);
+Route::resource('/posts', PostController::class);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('posts.index');
+// });

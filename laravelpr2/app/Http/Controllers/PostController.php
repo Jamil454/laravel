@@ -12,7 +12,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+         $posts = Post::orderBy('id', 'desc')->get();
+        // $posts = Post::latest()->paginate(5);
+        return view('posts.index', compact('posts'))->with('i', 1);
+        // return view('posts.index',compact('posts'))->with('i', (request()->input('page', 1) - 1) * 5);
+         
     }
 
     /**
@@ -20,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -28,7 +32,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'detail' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $input = $request->all();
+       
+  
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/';
+            $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $postImage);
+            $input['image'] = "$postImage";
+        }
+  
+        Post::create($input);
+   
+        return redirect()->route('posts.index')->with('success','Post Created Successfully.');
     }
 
     /**
@@ -60,6 +82,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        //dd($post);
+       $post->delete();
+       return redirect()->route('posts.index')->with('success','Post Deleted Successfully.');
     }
 }
