@@ -8,7 +8,7 @@
 						<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><i class="icon-basket-loaded mr-10"></i>Specialist<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
 						<ul id="ecom_dr" class="collapse collapse-level-1">
 							<li>
-								<a href="{{route('specialist.index')}}">All Specialists</a>
+								<a href="{{route('appointment.index')}}">All Specialists</a>
 							</li>
 							<li>
 								<a href="{{route('specialist.create')}}">New Specialist</a>
@@ -33,7 +33,7 @@
 								<a href="{{route('department.index')}}">All Departments</a>
 							</li>
 							<li>
-								<a href="{{route('department.create')}}">New Professors</a>
+								<a href="{{route('department.create')}}">New Department</a>
 							</li>	
 						</ul>
 					</li>
@@ -46,6 +46,17 @@
 							</li>
 							<li>
 								<a href="{{route('professor.create')}}">New professor</a>
+							</li>	
+						</ul>
+					</li>
+					<li>
+						<a href="javascript:void(0);" data-toggle="collapse" data-target="#drlist3"><i class="icon-basket-loaded mr-10"></i>Appointment<span class="pull-right"><i class="fa fa-fw fa-angle-down"></i></span></a>
+						<ul id="drlist3" class="collapse collapse-level-1">
+							<li>
+								<a href="{{route('appointment.index')}}">All Appointment</a>
+							</li>
+							<li>
+								<a href="{{route('appointment.create')}}">New Appointment</a>
 							</li>	
 						</ul>
 					</li>

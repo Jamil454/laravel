@@ -45,16 +45,15 @@
 	<!-- Title -->
 	<div class="row heading-bg bg-green">
 		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-			
+
 			<h5 class="txt-light">Export</h5>
 		</div>
 		<!-- Breadcrumb -->
 		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 			<ol class="breadcrumb">
 				<li><a href="index.html">Dashboard</a></li>
-				<li><a href="#"><span>table</span></a></li>
-				<li class="active"><span>Export</span></li>
-				
+				<li><a href="#"><span>Doctor</span></a></li>
+				<li class="active"><span>Doctor List</span></li>
 			</ol>
 		</div>
 		<!-- /Breadcrumb -->
@@ -70,7 +69,6 @@
 						@if(session('msg'))
 						<div class="alert alert-success">{{session('msg')}}</div>
 						@endif
-						<button class="btn btn-success" data-toggle="modal" data-target="#responsive-modal">New Department</button>
 						<h6 class="panel-title txt-dark">Export</h6>
 					</div>
 					<div class="clearfix"></div>
@@ -83,16 +81,20 @@
 									<thead>
 										<tr>
 											<th>ID</th>
-											<th>Department Name</th>
-											<th>Details</th>
+											<th>Patient Name</th>
+											<th>Phone</th>
+											<th>Appoinment For</th>
+											<th>Status</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 											<th>ID</th>
-											<th>Department Name</th>
-											<th>Details</th>
+											<th>Patient Name</th>
+											<th>Phone</th>
+											<th>Appoinment For</th>
+											<th>Status</th>
 											<th style="width: 30%;">Action</th>
 										</tr>
 									</tfoot>
@@ -101,16 +103,19 @@
 										<tr>
 											<td>{{$loop->iteration}}</td>
 											<td>{{$item->name}}</td>
-											<td>{{$item->details}}</td>
+											<td>{{$item->phone}}</td>
+											<td>{{$item->doctor->name}}</td>
+											<td><a href="{{route('changeStatus', $item->id)}}" class="{{$item->status=='confirmed'?' btn btn-success':'btn btn-warning'}}">{{$item->status}}</a></td>
 											<td style="width: 30%;">
 
-												<form onSubmit="return confirm('Are you sure to Delete')" action="{{route('department.destroy', $item->id)}}" method="post">
-													<a class="btn btn-success" href="{{route('department.show', $item->id)}}">View</a>
-													<a href="{{route('department.edit', $item->id)}}" class="btn btn-info">Edit</a>
+												<form action="{{route('appointment.destroy', $item->id)}}" method="post">
+													<a class="btn btn-success" href="{{route('appointment.show', $item->id)}}">View</a>
+													<a href="{{route('appointment.edit', $item->id)}}" class="btn btn-info">Edit</a>
 													@csrf
 													@method('DELETE')
 													<button class="btn btn-danger" type="submit" name="submit">Delete</button>
 												</form>
+
 											</td>
 
 										</tr>
@@ -125,39 +130,6 @@
 		</div>
 	</div>
 	<!-- /Row -->
-	<!-- /Modal -->
 </div>
-
-										<!-- sample modal content -->
-										<!-- /.modal -->
-										<div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-														<h5 class="modal-title">Modal Content is Responsive</h5>
-													</div>
-													<div class="modal-body">
-														<form >
-															<div class="form-group">
-																<label for="recipient-name" class="control-label mb-10">Recipient:</label>
-																<input type="text" class="form-control" id="recipient-name">
-															</div>
-															<div class="form-group">
-																<label for="message-text" class="control-label mb-10">Message:</label>
-																<textarea class="form-control" id="message-text"></textarea>
-															</div>
-														</form>
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-danger">Save changes</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<!-- Button trigger modal -->
-									
 
 @endsection
