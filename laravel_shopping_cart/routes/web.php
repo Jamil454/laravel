@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/home', [BookController::class, 'index']);  
+Route::get('/home', [BookController::class, 'index']);
 Route::get('/shopping-cart', [BookController::class, 'bookCart'])->name('shopping.cart');
 Route::get('/book/{id}', [BookController::class, 'addBooktoCart'])->name('addbook.to.cart');
 Route::patch('/update-shopping-cart', [BookController::class, 'updateCart'])->name('update.sopping.cart');
@@ -32,4 +33,4 @@ Route::get('/checkout', [BookController::class, 'checkout'])->name('shopping.che
 Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
 Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
 
-//Route::get('/productorder', [StripeController::class, 'productOrder']);
+Route::get('/invoice', [InvoiceController::class, 'InvoiceGenerate']);
