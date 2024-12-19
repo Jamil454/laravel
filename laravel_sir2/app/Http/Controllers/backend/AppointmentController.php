@@ -73,3 +73,6 @@ class AppointmentController extends Controller
         return redirect()->back();
     }
 }
+
+
+
