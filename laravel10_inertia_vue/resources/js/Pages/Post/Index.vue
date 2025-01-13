@@ -26,12 +26,15 @@ import {Link, usePage, useForm } from '@inertiajs/vue3';
         <h1 class="display-1">Welcome to Vue with laravel</h1>
         <Link :href="route('posts.create')"  class="btn btn-success">New Entry</Link>
         <table class="table table-bordered">
+        <thead>
             <tr>
                 <th>SN</th>
                 <th>Title</th>
                 <th>Details</th>
                 <th style="width: 300px;">Action</th>
             </tr>
+        </thead>
+        <tbody>
             <tr v-for="x in posts" :key="x.id">
                 <td>{{ x.id }}</td>
                <td>{{ x.title }}</td>
@@ -42,7 +45,8 @@ import {Link, usePage, useForm } from '@inertiajs/vue3';
                 <button @click="deletePost(x.id)" class="btn btn-danger btn-sm">DELETE</button>
             </td>
             </tr>
-            <td></td>
+        </tbody>
+            
         </table>
     </div>
 
