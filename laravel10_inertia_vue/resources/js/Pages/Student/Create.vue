@@ -21,7 +21,7 @@ const submit = ()=>{
         <Link :href="route('students.index')" class="btn btn-success">Students List</Link>
         <h1 class="display-3">Student Registration Form</h1>
 
-        <form @submit.prevent="">
+        <form @submit.prevent="submit">
 
             <div class="form-group">
                 <label for="">Name</label>
